@@ -1,18 +1,18 @@
 package happyme;
+
 import com.yammer.dropwizard.config.Configuration;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
- 
+
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.hibernate.validator.constraints.NotEmpty;
- 
-import com.yammer.dropwizard.config.Configuration;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
  
 public class HappyConfiguration extends Configuration{
 	
 	@JsonProperty
     @NotEmpty
-    public String mongohost = "vps112500.ovh.net";
+    public String mongohost = "192.168.0.20";
  
     @JsonProperty
     @Min(1)
@@ -21,6 +21,6 @@ public class HappyConfiguration extends Configuration{
  
     @JsonProperty
     @NotEmpty
-    public String mongodb = "mydb";
+    public String mongodb = "test";
  
 }
