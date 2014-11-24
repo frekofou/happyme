@@ -1,5 +1,6 @@
 package happyme;
 
+import com.mongodb.Mongo;
 import com.yammer.dropwizard.Service;
 import com.yammer.dropwizard.config.Bootstrap;
 import com.yammer.dropwizard.config.Environment;
@@ -18,7 +19,14 @@ public class HappyService extends Service<HappyConfiguration> {
     @Override
     public void run(HappyConfiguration configuration, Environment environment) throws Exception {
     	// un commentaire	
-    	environment.addResource(new IndexResource());
+    	Mongo mongo = new Mongo(configuration.mongohost, configuration.mongoport);
+        HappyMongoManaged mongoManaged = new HappyMongoManaged(mongo);
+        environment.manage(mongoManaged);
+ 
+        environment.addHealthCheck(new HappyMongoHealthCheck(mongo));
+ 
+        environment.addResource(new IndexResource());
+   
     }
  
 }
