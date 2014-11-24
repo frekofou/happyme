@@ -17,7 +17,7 @@ public class HappyService extends Service<HappyConfiguration> {
  
     @Override
     public void run(HappyConfiguration configuration, Environment environment) throws Exception {
-    		
+    	// un commentaire	
     	environment.addResource(new IndexResource());
     }
  
