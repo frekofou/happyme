@@ -12,7 +12,7 @@ public class HappyConfiguration extends Configuration{
 	
 	@JsonProperty
     @NotEmpty
-    public String mongohost = "192.168.0.20";
+    public String mongohost = "localhost";
  
     @JsonProperty
     @Min(1)
