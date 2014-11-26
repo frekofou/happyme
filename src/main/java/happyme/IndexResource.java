@@ -1,23 +1,37 @@
 package happyme;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
- 
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
- 
+
+import net.vz.mongodb.jackson.DBCursor;
+import net.vz.mongodb.jackson.JacksonDBCollection;
+
 import com.yammer.metrics.annotation.Timed;
- 
+
 @Path("/")
 public class IndexResource {
- 
+
+    private JacksonDBCollection<HappymeEmotion, String> macollection;
+
+    public IndexResource(JacksonDBCollection<HappymeEmotion, String> emotions) {
+        this.macollection = emotions;
+    }
+
     @GET
     @Produces(value = MediaType.APPLICATION_JSON)
     @Timed
     public List<HappymeEmotion> index() {
-        return Arrays.asList(new HappymeEmotion("Day 12: OpenCV--Face Detection for Java Developers",
-                "https://www.openshift.com/blogs/day-12-opencv-face-detection-for-java-developers"));
+        DBCursor<HappymeEmotion> dbCursor = macollection.find();
+        List<HappymeEmotion> emotions = new ArrayList<>();
+        while (dbCursor.hasNext()) {
+            HappymeEmotion emotion = dbCursor.next();
+            emotions.add(emotion);
+        }
+        return emotions;
     }
 }

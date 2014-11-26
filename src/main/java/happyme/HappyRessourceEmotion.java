@@ -16,10 +16,13 @@ import net.vz.mongodb.jackson.DBCursor;
 import net.vz.mongodb.jackson.JacksonDBCollection;
  
 import com.yammer.metrics.annotation.Timed;
- 
+
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 @Path("/emotions")
 @Produces(value = MediaType.APPLICATION_JSON)
 @Consumes(value = MediaType.APPLICATION_JSON)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class HappyRessourceEmotion {
  
     private JacksonDBCollection<HappymeEmotion, String> collection;
