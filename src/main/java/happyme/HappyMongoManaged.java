@@ -20,7 +20,7 @@ public class HappyMongoManaged implements Managed {
 
 	@Override
 	public void stop() throws Exception {
-		// TODO Auto-generated method stub
+        mongo.close();
 		
 	}
 

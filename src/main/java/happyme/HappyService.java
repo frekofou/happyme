@@ -21,18 +21,18 @@ public class HappyService extends Service<HappyConfiguration> {
  
     @Override
     public void run(HappyConfiguration configuration, Environment environment) throws Exception {
-    	// un commentaire	
+
     	Mongo mongo = new Mongo(configuration.mongohost, configuration.mongoport);
         HappyMongoManaged mongoManaged = new HappyMongoManaged(mongo);
         environment.manage(mongoManaged);
  
         environment.addHealthCheck(new HappyMongoHealthCheck(mongo));
  
-        environment.addResource(new IndexResource());
+
         DB db = mongo.getDB(configuration.mongodb);
         JacksonDBCollection<HappymeEmotion, String> emotions = JacksonDBCollection.wrap(db.getCollection("emotions"), HappymeEmotion.class, String.class);
  
-        environment.addResource(new IndexResource());
+        environment.addResource(new IndexResource(emotions));
  
         environment.addResource(new HappyRessourceEmotion(emotions));
     
