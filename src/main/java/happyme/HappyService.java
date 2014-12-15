@@ -34,7 +34,7 @@ public class HappyService extends Service<HappyConfiguration> {
  
         environment.addResource(new IndexResource(emotions));
  
-        environment.addResource(new HappyRessourceEmotion(emotions));
+        environment.addResource(new HappyRessourceAction(emotions));
     
    
     }
