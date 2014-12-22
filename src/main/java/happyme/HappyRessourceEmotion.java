@@ -18,7 +18,7 @@ import net.vz.mongodb.jackson.JacksonDBCollection;
 import com.yammer.metrics.annotation.Timed;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-
+//just for commit
 @Path("/emotions")
 @Produces(value = MediaType.APPLICATION_JSON)
 @Consumes(value = MediaType.APPLICATION_JSON)
