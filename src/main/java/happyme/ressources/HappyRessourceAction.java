@@ -1,4 +1,6 @@
-package happyme;
+package happyme.ressources;
+import happyme.model.HappymeEmotion;
+
 import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package happyme;
+package happyme.server;
 
 import com.yammer.dropwizard.config.Configuration;
 

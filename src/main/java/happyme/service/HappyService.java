@@ -1,5 +1,11 @@
-package happyme;
+package happyme.service;
 
+import happyme.database.tools.HappyMongoHealthCheck;
+import happyme.database.tools.HappyMongoManaged;
+import happyme.model.HappymeEmotion;
+import happyme.ressources.HappyRessourceAction;
+import happyme.ressources.IndexResource;
+import happyme.server.HappyConfiguration;
 import net.vz.mongodb.jackson.JacksonDBCollection;
 
 import com.mongodb.DB;

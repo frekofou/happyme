@@ -1,4 +1,4 @@
-package happyme;
+package happyme.database.tools;
 
 import com.mongodb.Mongo;
 import com.yammer.dropwizard.lifecycle.Managed;

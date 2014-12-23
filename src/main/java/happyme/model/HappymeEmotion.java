@@ -1,4 +1,4 @@
-package happyme;
+package happyme.model;
 
 
 
