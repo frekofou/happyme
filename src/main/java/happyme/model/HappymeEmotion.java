@@ -23,6 +23,7 @@ public class HappymeEmotion {
     @NotBlank
     private HappymeEmotionType feeling;
  
+
 	// publication date for the emotion the format is Java DATE
     @NotBlank
     private final Date publishedOn = new Date();
@@ -54,4 +55,11 @@ public class HappymeEmotion {
     public HappymeEmotionLocation getLocation() {
  		return location;
  	}
+	public HappymeEmotionType getFeeling() {
+		return feeling;
+	}
+
+	public void setFeeling(HappymeEmotionType feeling) {
+		this.feeling = feeling;
+	}
 }

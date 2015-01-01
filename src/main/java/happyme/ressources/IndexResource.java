@@ -32,6 +32,7 @@ public class IndexResource {
         List<HappymeEmotion> emotions = new ArrayList<>();
         while (dbCursor.hasNext()) {
             HappymeEmotion emotion = dbCursor.next();
+           // emotion.setFeeling(feeling );
             emotions.add(emotion);
         }
         return emotions;
