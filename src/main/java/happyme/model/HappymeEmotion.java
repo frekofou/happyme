@@ -5,6 +5,8 @@ package happyme.model;
 import java.util.Date;
 import java.util.UUID;
 
+import javax.validation.constraints.NotNull;
+
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
@@ -17,15 +19,14 @@ public class HappymeEmotion {
     // the emotion title, it can be a tought, a felling, something the user wanna share
     private String title;
     // the emotion location
-    @NotBlank
+    @NotNull
     private HappymeEmotionLocation location;
     // the emotion type
-    @NotBlank
     private HappymeEmotionType feeling;
  
 
 	// publication date for the emotion the format is Java DATE
-    @NotBlank
+    @NotNull
     private final Date publishedOn = new Date();
  
     public HappymeEmotion() {

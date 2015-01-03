@@ -13,7 +13,7 @@ public class HappyMongoHealthCheck extends HealthCheck{
 	    }
 	 
 	    @Override
-	    protected Result check() throws Exception {
+	    protected Result  check() throws Exception {
 	        mongo.getDatabaseNames();
 	        return Result.healthy();
 	    }

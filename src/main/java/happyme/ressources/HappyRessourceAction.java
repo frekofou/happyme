@@ -19,16 +19,12 @@ import javax.ws.rs.core.Response;
 import net.vz.mongodb.jackson.DBCursor;
 import net.vz.mongodb.jackson.JacksonDBCollection;
 
-import com.yammer.dropwizard.jersey.params.LongParam;
 import com.yammer.metrics.annotation.Timed;
 
-import org.apache.log4j.Logger;
+
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
-@Path("/emotions/")
-@Produces(value = MediaType.APPLICATION_JSON)
-@Consumes(value = MediaType.APPLICATION_JSON)
-@JsonIgnoreProperties(ignoreUnknown = true)
+@Path("/emotions")
 public class HappyRessourceAction {
  
     private JacksonDBCollection<HappymeEmotion, String> macollection;
@@ -52,13 +48,14 @@ public class HappyRessourceAction {
         List<HappymeEmotion> emotions = new ArrayList<>();
         while (dbCursor.hasNext()) {
             HappymeEmotion emotion = dbCursor.next();
-            emotions.add(emotion);
+           emotions.add(emotion);
         }
         return emotions;
     }
     @DELETE
     @Path("{id}")
-    public HappymeEmotion delete(@PathParam("id") final String id) {
+    public Response delete(@PathParam("id") String id) {
+    	
     	DBCursor<HappymeEmotion> dbCursor = macollection.find();
         List<HappymeEmotion> emotions = new ArrayList<>();
         while (dbCursor.hasNext()) {
@@ -66,19 +63,17 @@ public class HappyRessourceAction {
             emotions.add(emotion);
         }
         
-        HappymeEmotion emotionErased = null;
-     // loop past all items in the list and replace the changed one
+        // loop past all items in the list and replace the changed one
         for (HappymeEmotion emotion: emotions) {
-            if(emotion.getId().contains(id)){
-            	//nothing
-            	emotionErased = emotion;
-                
-            }else{
-            	
-            }
+            if(emotion.getId().equals(id)){
+            	macollection.remove(emotion);
+             }
         }
         
-        return emotionErased;
+        return Response.noContent().build();
     }
+    
+    
+    
    
 }
