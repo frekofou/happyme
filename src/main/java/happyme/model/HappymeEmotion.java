@@ -11,6 +11,10 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
 
+import com.google.maps.model.GeocodingResult;
+
+
+
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class HappymeEmotion {
@@ -19,9 +23,12 @@ public class HappymeEmotion {
     // the emotion title, it can be a tought, a felling, something the user wanna share
     private String title;
     // the emotion location
-    @NotNull
-    private HappymeEmotionLocation location;
-    // the emotion type
+ 
+    private Object[] location;
+   
+   
+
+	// the emotion type
     private HappymeEmotionType feeling;
  
 
@@ -32,13 +39,13 @@ public class HappymeEmotion {
     public HappymeEmotion() {
     }
  
-    public HappymeEmotion(String title, String id, Date publishedOn, HappymeEmotionLocation location, HappymeEmotionType feeling) {
+    public HappymeEmotion(String title, String id, Date publishedOn, Object[] location, HappymeEmotionType feeling) {
         super();
         this.title = title;
         this.id = id;
         this.location = location;
         this.feeling = feeling;
-        
+   
     }
  
     public String getId() {
@@ -53,7 +60,10 @@ public class HappymeEmotion {
     public Date getPublishedOn() {
         return publishedOn;
     }
-    public HappymeEmotionLocation getLocation() {
+    public void setLocation(Object[] location) {
+		this.location= location;
+	}
+    public Object[]  getLocation() {
  		return location;
  	}
 	public HappymeEmotionType getFeeling() {
@@ -63,4 +73,6 @@ public class HappymeEmotion {
 	public void setFeeling(HappymeEmotionType feeling) {
 		this.feeling = feeling;
 	}
+
+	
 }

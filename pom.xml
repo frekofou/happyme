@@ -40,8 +40,13 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
-
-	</dependencies>
+		
+		<dependency>
+    <groupId>com.google.maps</groupId>
+    <artifactId>google-maps-services</artifactId>
+    <version>0.1.5</version>
+</dependency>
+		</dependencies>
 
 
 	<build>

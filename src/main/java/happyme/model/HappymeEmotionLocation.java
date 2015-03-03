@@ -1,25 +1,26 @@
 package happyme.model;
+import happyme.model.HappymeEmotionType.EmotionType;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.google.maps.model.AddressComponent;
+import com.google.maps.model.GeocodingResult;
+import com.google.maps.model.Geometry;
 
 
 
-public class HappymeEmotionLocation {
+@Entity
+@Table(name = "location")
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
+public  class HappymeEmotionLocation {
+
+	public HappymeEmotionLocation(GeocodingResult geo) {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	
-
-    // the location latitude retrieve from the client
-    private String latitude;
-    // the location latitude retrieve from the client
-    private String longitude;
-	public String getLongitude() {
-		return longitude;
-	}
-	public void setLongitude(String longitude) {
-		this.longitude = longitude;
-	}
-	public String getLatitude() {
-		return latitude;
-	}
-	public void setLatitude(String latitude) {
-		this.latitude = latitude;
-	}
-
 }

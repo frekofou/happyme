@@ -1,5 +1,6 @@
 package happyme.ressources;
 import happyme.model.HappymeEmotion;
+import happyme.model.HappymeEmotionLocation;
 
 import java.io.Console;
 import java.util.ArrayList;
@@ -37,8 +38,9 @@ public class HappyRessourceAction {
     @POST
     @Timed
     public Response publishNewEmotion(@Valid HappymeEmotion emotion) {
+    
         macollection.insert(emotion);
-        return Response.noContent().build();
+      return Response.noContent().build();
     }
     
       
