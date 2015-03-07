@@ -42,9 +42,9 @@
 		</dependency>
 		
 		<dependency>
-    <groupId>com.google.maps</groupId>
-    <artifactId>google-maps-services</artifactId>
-    <version>0.1.5</version>
+    <groupId>com.google.apis</groupId>
+      <artifactId>google-api-services-mapsengine</artifactId>
+      <version>v1-rev59-1.19.1</version>
 </dependency>
 		</dependencies>
 

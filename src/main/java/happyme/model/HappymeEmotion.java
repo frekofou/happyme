@@ -1,7 +1,5 @@
 package happyme.model;
 
-
-
 import java.util.Date;
 import java.util.UUID;
 
@@ -11,61 +9,57 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
 
-import com.google.maps.model.GeocodingResult;
-
-
-
-
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class HappymeEmotion {
 	// random identifier for database record
-    private String id = UUID.randomUUID().toString();
-    // the emotion title, it can be a tought, a felling, something the user wanna share
-    private String title;
-    // the emotion location
- 
-    private Object[] location;
-   
-   
+	private String id = UUID.randomUUID().toString();
+	// the emotion title, it can be a tought, a felling, something the user
+	// wanna share
+	private String title;
+	// the emotion location
+
+	private Object[] location;
 
 	// the emotion type
-    private HappymeEmotionType feeling;
- 
+	private HappymeEmotionType feeling;
 
 	// publication date for the emotion the format is Java DATE
-    @NotNull
-    private final Date publishedOn = new Date();
- 
-    public HappymeEmotion() {
-    }
- 
-    public HappymeEmotion(String title, String id, Date publishedOn, Object[] location, HappymeEmotionType feeling) {
-        super();
-        this.title = title;
-        this.id = id;
-        this.location = location;
-        this.feeling = feeling;
-   
-    }
- 
-    public String getId() {
-        return id;
-    }
+	@NotNull
+	private final Date publishedOn = new Date();
 
-    public String getTitle() {
-        return title;
-    }
- 
-   
-    public Date getPublishedOn() {
-        return publishedOn;
-    }
-    public void setLocation(Object[] location) {
-		this.location= location;
+	public HappymeEmotion() {
 	}
-    public Object[]  getLocation() {
- 		return location;
- 	}
+
+	public HappymeEmotion(String title, String id, Date publishedOn,
+			Object[] location, HappymeEmotionType feeling) {
+		super();
+		this.title = title;
+		this.id = id;
+		this.location = location;
+		this.feeling = feeling;
+
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public Date getPublishedOn() {
+		return publishedOn;
+	}
+
+	public void setLocation(Object[] location) {
+		this.location = location;
+	}
+
+	public Object[] getLocation() {
+		return location;
+	}
+
 	public HappymeEmotionType getFeeling() {
 		return feeling;
 	}
@@ -74,5 +68,4 @@ public class HappymeEmotion {
 		this.feeling = feeling;
 	}
 
-	
 }
