@@ -1,24 +1,29 @@
 package happyme.model;
 
+
+
 import java.util.Date;
 import java.util.UUID;
 
+import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.URL;
+import net.vz.mongodb.jackson.ObjectId;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.google.maps.GeocodingApiRequest;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class HappymeEmotion {
-	// random identifier for database record
-	private String id = UUID.randomUUID().toString();
+	@ObjectId
+	private String _id;
 	// the emotion title, it can be a tought, a felling, something the user
 	// wanna share
 	private String title;
 	// the emotion location
-
-	private Object[] location;
+	@Nullable
+	private GeocodingApiRequest address;
+	private Object location;
 
 	// the emotion type
 	private HappymeEmotionType feeling;
@@ -30,19 +35,12 @@ public class HappymeEmotion {
 	public HappymeEmotion() {
 	}
 
-	public HappymeEmotion(String title, String id, Date publishedOn,
-			Object[] location, HappymeEmotionType feeling) {
+	public HappymeEmotion(String title, java.util.Date publishedOn,
+			Object location, HappymeEmotionType feeling) {
 		super();
-		this.title = title;
-		this.id = id;
-		this.location = location;
-		this.feeling = feeling;
-
 	}
 
-	public String getId() {
-		return id;
-	}
+	
 
 	public String getTitle() {
 		return title;
@@ -52,11 +50,11 @@ public class HappymeEmotion {
 		return publishedOn;
 	}
 
-	public void setLocation(Object[] location) {
+	public void setLocation(Object location) {
 		this.location = location;
 	}
 
-	public Object[] getLocation() {
+	public Object getLocation() {
 		return location;
 	}
 
@@ -66,6 +64,22 @@ public class HappymeEmotion {
 
 	public void setFeeling(HappymeEmotionType feeling) {
 		this.feeling = feeling;
+	}
+
+	public GeocodingApiRequest getAddress() {
+		return address;
+	}
+
+	public void setAddress(GeocodingApiRequest address) {
+		this.address = address;
+	}
+
+	public String get_id() {
+		return _id;
+	}
+
+	public void set_id(String _id) {
+		this._id = _id;
 	}
 
 }

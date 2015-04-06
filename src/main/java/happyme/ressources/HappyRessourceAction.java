@@ -5,7 +5,6 @@ import happyme.model.HappymeEmotion;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -26,6 +25,7 @@ import com.yammer.metrics.annotation.Timed;
 public class HappyRessourceAction {
 
 	private JacksonDBCollection<HappymeEmotion, String> macollection;
+	
 
 	public HappyRessourceAction(
 			JacksonDBCollection<HappymeEmotion, String> emotions) {
@@ -34,18 +34,17 @@ public class HappyRessourceAction {
 
 	@POST
 	@Timed
-	public Response publishNewEmotion(@Valid HappymeEmotion emotion) {
-
+	public Response publishNewEmotion(HappymeEmotion emotion) {
 		macollection.insert(emotion);
 		return Response.noContent().build();
 	}
 
 	@PUT
-	@Path("{id}")
+	@Path("{_id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Timed
-	public Response update(@PathParam("id") String id, HappymeEmotion entity) {
+	public Response update(@PathParam("_id") String _id, HappymeEmotion entity) {
 
 		DBCursor<HappymeEmotion> dbCursor = macollection.find();
 		List<HappymeEmotion> emotions = new ArrayList<>();
@@ -56,7 +55,7 @@ public class HappyRessourceAction {
 
 		// loop past all items in the list and return the one
 		for (HappymeEmotion emotion : emotions) {
-			if (emotion.getId().equals(id)) {
+			if (emotion.get_id().equals(_id)) {
 				macollection.update(emotion, entity);
 			}
 		}
@@ -64,10 +63,10 @@ public class HappyRessourceAction {
 	}
 
 	@GET
-	@Path("{id}")
+	@Path("{_id}")
 	@Produces(value = MediaType.APPLICATION_JSON)
 	@Timed
-	public HappymeEmotion findByID(@PathParam("id") String id) {
+	public HappymeEmotion findByID(@PathParam("_id") String _id) {
 		DBCursor<HappymeEmotion> dbCursor = macollection.find();
 		List<HappymeEmotion> emotions = new ArrayList<>();
 		while (dbCursor.hasNext()) {
@@ -77,7 +76,7 @@ public class HappyRessourceAction {
 
 		// loop past all items in the list and return the one
 		for (HappymeEmotion emotion : emotions) {
-			if (emotion.getId().equals(id)) {
+			if (emotion.get_id().equals(_id)) {
 				return emotion;
 			}
 		}
@@ -99,23 +98,25 @@ public class HappyRessourceAction {
 	}
 
 	@DELETE
-	@Path("{id}")
-	public Response delete(@PathParam("id") String id) {
+	@Path("{_id}")
+	@Timed
+	public Response delete(@PathParam("_id") String _id) {
 
-		DBCursor<HappymeEmotion> dbCursor = macollection.find();
-		List<HappymeEmotion> emotions = new ArrayList<>();
-		while (dbCursor.hasNext()) {
-			HappymeEmotion emotion = dbCursor.next();
-			emotions.add(emotion);
-		}
-
-		// loop past all items in the list and replace the changed one
-		for (HappymeEmotion emotion : emotions) {
-			if (emotion.getId().equals(id)) {
-				macollection.remove(emotion);
-			}
-		}
-
+//		DBCursor<HappymeEmotion> dbCursor = macollection.find();
+//		List<HappymeEmotion> emotions = new ArrayList<>();
+//		while (dbCursor.hasNext()) {
+//			HappymeEmotion emotion = dbCursor.next();
+//			emotions.add(emotion);
+//		}
+//
+//		// loop past all items in the list and replace the changed one
+//		for (HappymeEmotion emotion : emotions) {
+//			if (emotion.get_id().equals(_id)) {
+//				macollection.remove(emotion);
+//			}
+//		}
+		macollection.removeById(_id);
+		
 		return Response.noContent().build();
 	}
 

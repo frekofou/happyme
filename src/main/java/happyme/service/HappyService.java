@@ -1,5 +1,6 @@
 package happyme.service;
 
+import happyme.database.tools.HappyGeocoding;
 import happyme.database.tools.HappyMongoHealthCheck;
 import happyme.database.tools.HappyMongoManaged;
 import happyme.model.HappymeEmotion;
@@ -31,7 +32,8 @@ public class HappyService extends Service<HappyConfiguration> {
 	public void run(HappyConfiguration configuration, Environment environment)
 			throws Exception {
 
-		Mongo mongo = new Mongo(configuration.mongohost,configuration.mongoport);
+		Mongo mongo = new Mongo(configuration.mongohost,
+				configuration.mongoport);
 		HappyMongoManaged mongoManaged = new HappyMongoManaged(mongo);
 		environment.manage(mongoManaged);
 		environment.addHealthCheck(new HappyMongoHealthCheck(mongo));
@@ -43,8 +45,8 @@ public class HappyService extends Service<HappyConfiguration> {
 				.wrap(db.getCollection("emotions"), HappymeEmotion.class,
 						String.class);
 
-
 		environment.addResource(new HappyRessourceAction(emotions));
+	
 
 	}
 

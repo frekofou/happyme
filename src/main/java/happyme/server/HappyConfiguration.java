@@ -1,5 +1,6 @@
 package happyme.server;
 
+import com.google.maps.GeoApiContext;
 import com.yammer.dropwizard.config.Configuration;
 
 import org.codehaus.jackson.annotate.JsonProperty;
@@ -22,5 +23,7 @@ public class HappyConfiguration extends Configuration{
     @JsonProperty
     @NotEmpty
     public String mongodb = "HappyMeDb";
+    
+    public GeoApiContext geoApiContext = new GeoApiContext().setApiKey("AIzaSyCb7d9nHJumXflBA2wbohFhrVnCmwZzTgU");
  
 }
